@@ -47,7 +47,7 @@ Data Source (arXiv) → Chunking → Embeddings → Weaviate Index → RAG Pipel
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/TowhidAhmedd/Advanced_Rag_ML_Research_Assistant
    cd ml-research-assistant
    ```
 
@@ -115,16 +115,27 @@ Key configuration options in `app/config.py`:
 
 ## Deployment
 
-### AWS EC2 Deployment
+### Deployment (Render)
+This project is optimized for deployment on Render as a Web Service.
 
-Follow the detailed guide in [DEPLOYMENT.md](DEPLOYMENT.md) for deploying to AWS EC2.
+Quick Steps:
 
-**Quick steps**:
-1. Launch Ubuntu EC2 instance
-2. Configure security groups (SSH + port 8501)
-3. Upload project files using SCP
-4. Run setup script: `bash deploy/setup_ec2.sh`
-5. Start application: `bash deploy/start_app.sh`
+Fork/Push: Ensure code is in a GitHub or GitLab repository.
+
+Create Web Service: In the Render Dashboard, click New + and select Web Service.
+
+Connect Repo: Select your project repository.
+
+Configure Environment:
+
+Runtime: Python 3
+
+Build Command: pip install -r requirements.txt
+
+Start Command: python -m streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+
+Environment Variables: Add your GROQ_API_KEY and TAVILY_API_KEY in the Env Vars section of the Render settings.
+
 
 ### Local Deployment
 
@@ -136,7 +147,7 @@ docker build -t ml-research-assistant .
 docker run -p 8501:8501 ml-research-assistant
 ```
 
-## Development
+
 
 ### Project Structure
 
