@@ -43,7 +43,7 @@ def render_sidebar():
     )
     
     st.sidebar.markdown("---")
-    st.sidebar.subheader("⚙️ Settings")
+    st.sidebar.subheader("Settings")
     
     use_reranking = st.sidebar.checkbox(
         "Enable Reranking",
@@ -70,7 +70,7 @@ def render_sidebar():
 
 def render_evaluation_metrics(metrics: dict):
     """Render evaluation metrics in a nice format."""
-    st.subheader("📊 RAG Evaluation Metrics")
+    st.subheader("RAG Evaluation Metrics")
     st.markdown(
         """
         These metrics help us understand how well our retrieval system is performing:
@@ -97,7 +97,7 @@ def render_evaluation_metrics(metrics: dict):
         st.metric("F1@K", f"{metrics.get('f1@k', 0):.3f}")
     
     # Show explanation
-    with st.expander("📖 Understanding the Metrics"):
+    with st.expander("Understanding the Metrics"):
         st.markdown("""
         **Precision@K**: Measures how many of the top-K results are actually relevant.
         - High precision = fewer irrelevant results
@@ -118,7 +118,7 @@ def render_evaluation_metrics(metrics: dict):
 
 def render_reranking_comparison(comparison: dict):
     """Render reranking comparison visualization."""
-    st.subheader("🔄 Reranking Comparison")
+    st.subheader("Reranking Comparison")
     st.markdown(
         """
         **Reranking** uses a cross-encoder model to reorder results by considering
@@ -164,14 +164,14 @@ def render_reranking_comparison(comparison: dict):
                 "Original Score": f"{orig_score:.4f}",
                 "Reranked Title": (rerank.get("title") or "")[:50] + "...",
                 "Rerank Score": f"{rerank_score:.3f}",
-                "Moved": "✅" if id(orig) != id(rerank) else "➡️"
+                "Moved": "" if id(orig) != id(rerank) else "➡️"
             })
         
         df = pd.DataFrame(comparison_data)
         st.dataframe(df, use_container_width=True, hide_index=True)
         
         # Show explanation
-        with st.expander("💡 How Reranking Works"):
+        with st.expander("How Reranking Works"):
             st.markdown("""
             1. **Initial Retrieval**: Bi-encoder finds ~10-20 candidate chunks quickly
             2. **Reranking**: Cross-encoder scores each query-chunk pair more accurately
@@ -185,7 +185,7 @@ def render_reranking_comparison(comparison: dict):
 
 def render_chunking_info(contexts: list):
     """Show chunking strategy information."""
-    st.subheader("✂️ Chunking Strategy Information")
+    st.subheader("Chunking Strategy Information")
     st.markdown(
         """
         Different chunking strategies affect how documents are split and stored.
@@ -208,7 +208,7 @@ def render_chunking_info(contexts: list):
         st.dataframe(strategy_df, use_container_width=True, hide_index=True)
     
     # Show chunking strategies comparison
-    with st.expander("📚 Chunking Strategies Explained"):
+    with st.expander("Chunking Strategies Explained"):
         st.markdown("""
         **1. Fixed-Size Chunking** (Current default)
         - Splits text into fixed token windows
@@ -242,7 +242,7 @@ def main():
     use_reranking, use_evaluation, top_k = render_sidebar()
     pipeline = init_pipeline(use_reranking, use_evaluation)
 
-    st.title("🔍 ML Research Assistant")
+    st.title("ML Research Assistant")
     st.markdown(
         """
         Ask a question about machine learning / deep learning. 
@@ -284,11 +284,11 @@ def main():
             st.warning("Please enter a question.")
         else:
             # Show appropriate spinner message
-            spinner_msg = "🔍 Retrieving and generating answer..."
+            spinner_msg = "Retrieving and generating answer..."
             if use_reranking:
-                spinner_msg = "🔍 Retrieving, reranking, and generating answer... (reranking may take 30-60s on first use)"
+                spinner_msg = "Retrieving, reranking, and generating answer... (reranking may take 30-60s on first use)"
             elif use_evaluation:
-                spinner_msg = "🔍 Retrieving, evaluating, and generating answer..."
+                spinner_msg = "Retrieving, evaluating, and generating answer..."
             
             with st.spinner(spinner_msg):
                 try:
@@ -301,7 +301,7 @@ def main():
                     st.session_state["last_result"] = result
                 except RuntimeError as e:
                     if "reranker" in str(e).lower() or "rerank" in str(e).lower():
-                        st.error(f"⚠️ Reranking failed: {str(e)}\n\n**Tip:** Try disabling reranking in the sidebar settings for faster responses.")
+                        st.error(f"Reranking failed: {str(e)}\n\n**Tip:** Try disabling reranking in the sidebar settings for faster responses.")
                         # Fall back to non-reranked result
                         try:
                             result = pipeline.answer_query(
@@ -311,7 +311,7 @@ def main():
                                 use_evaluation=use_evaluation,
                             )
                             st.session_state["last_result"] = result
-                            st.info("✅ Showing results without reranking.")
+                            st.info("Showing results without reranking.")
                         except Exception as e2:
                             st.error(f"Error: {e2}")
                     else:
@@ -321,23 +321,23 @@ def main():
 
     result = st.session_state.get("last_result")
     if not result:
-        st.info("👆 Enter a question and click 'Search & Answer' to see results.")
+        st.info("Enter a question and click 'Search & Answer' to see results.")
         return
 
     # Main content area
     st.divider()
     
     # Answer section
-    st.subheader("💬 Answer")
+    st.subheader("Answer")
     st.markdown(result.answer)
     st.caption("Model-generated answer from retrieved context chunks.")
 
     # Create tabs for different views
     tab1, tab2, tab3, tab4 = st.tabs([
-        "📊 Evaluation Metrics",
-        "🔄 Reranking",
-        "✂️ Chunking Info",
-        "📄 Retrieved Chunks"
+        "Evaluation Metrics",
+        "Reranking",
+        "Chunking Info",
+        "Retrieved Chunks"
     ])
 
     with tab1:
@@ -356,7 +356,7 @@ def main():
         render_chunking_info(result.contexts)
 
     with tab4:
-        st.subheader("📄 Retrieved Chunks")
+        st.subheader("Retrieved Chunks")
         st.markdown(
             "These are the chunks retrieved from the vector database. "
             "Each chunk contains relevant context from research papers."
