@@ -113,9 +113,8 @@ Key configuration options in `app/config.py`:
 - **Embeddings**: Model selection (via sentence-transformers)
 - **LLM**: Provider selection (OpenAI/Groq)
 
-## Deployment
+## Deployment (Render)
 
-### Deployment (Render)
 This project is optimized for deployment on Render as a Web Service.
 
 Quick Steps:
