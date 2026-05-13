@@ -120,21 +120,14 @@ This project is optimized for deployment on Render as a Web Service.
 
 Quick Steps:
 
-Fork/Push: Ensure code is in a GitHub or GitLab repository.
-
-Create Web Service: In the Render Dashboard, click New + and select Web Service.
-
-Connect Repo: Select your project repository.
-
-Configure Environment:
-
-Runtime: Python 3
-
-Build Command: pip install -r requirements.txt
-
-Start Command: python -m streamlit run app.py --server.port $PORT --server.address 0.0.0.0
-
-Environment Variables: Add your GROQ_API_KEY and TAVILY_API_KEY in the Env Vars section of the Render settings.
+   Fork/Push: Ensure code is in a GitHub or GitLab repository.<br/>
+   Create Web Service: In the Render Dashboard, click New + and select Web Service.<br/>
+   Connect Repo: Select your project repository.<br/>
+   Configure Environment:<br/>
+   Runtime: Python 3<br/>
+   Build Command: pip install -r requirements.txt<br/>
+   Start Command: python -m streamlit run app.py --server.port $PORT --server.address 0.0.0.0<br/>
+   Environment Variables: Add your GROQ_API_KEY and TAVILY_API_KEY in the Env Vars section of the Render settings.<br/>
 
 
 ### Local Deployment
