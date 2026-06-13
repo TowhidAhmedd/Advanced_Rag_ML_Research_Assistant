@@ -1,0 +1,15 @@
+# gemini
+
+Architected a Modular RAG Pipeline: Designed an end-to-end Retrieval-Augmented Generation (RAG) system with strictly decoupled modules for data ingestion (ingestion/), core AI logic (rag/), and user interface (ui/), ensuring high maintainability and scalable code.
+
+Built an Automated Ingestion & Vectorization Engine: Developed a custom data pipeline to extract and load research papers (load_arxiv.py), implementing advanced text chunking and embedding generation before indexing into a Weaviate vector database (index_weaviate.py).
+
+Implemented Advanced Retrieval Techniques: Enhanced baseline RAG accuracy by integrating a custom retriever and a two-stage retrieval process utilizing a dedicated reranker (reranker.py) to drastically improve the relevance of context fed to the LLM.
+
+Integrated Quantitative Evaluation: Engineered an evaluation framework (evaluation.py) to systematically test and benchmark the LLM pipeline's accuracy, demonstrating a data-driven approach to AI development.
+
+Modern Python Tooling: Leveraged uv for lightning-fast and deterministic dependency resolution (evidenced by uv.lock), alongside a rapid-prototyping frontend using Streamlit (streamlit_app.py).
+
+# 
+
+
