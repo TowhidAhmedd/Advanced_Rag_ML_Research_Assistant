@@ -10,6 +10,18 @@ Integrated Quantitative Evaluation: Engineered an evaluation framework (evaluati
 
 Modern Python Tooling: Leveraged uv for lightning-fast and deterministic dependency resolution (evidenced by uv.lock), alongside a rapid-prototyping frontend using Streamlit (streamlit_app.py).
 
-# 
+==================================
+# chatgpt
 
+• Developed an AI-powered research assistant using Retrieval-Augmented Generation (RAG) architecture to perform semantic search and question answering over ML research documents.
 
+• Implemented an end-to-end RAG pipeline including PDF ingestion, document chunking, embedding generation, vector similarity search, and LLM-based response generation.
+
+• Integrated vector database technology for efficient retrieval of relevant research knowledge and improved answer accuracy.
+
+• Designed a modular architecture separating ingestion, retrieval, LLM orchestration, and user interface layers.
+
+• Improved reliability by grounding LLM responses with retrieved document context to minimize hallucination.
+
+Tech Stack:
+Python, LangChain, LLM APIs, Embeddings, Vector Database, Streamlit, RAG, NLP
