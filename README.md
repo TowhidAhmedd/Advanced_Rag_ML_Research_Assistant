@@ -1,3 +1,224 @@
+# 🧠 ML Research Assistant (RAG System)
+
+![RAG 1](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag%20Screenshot%202026-06-12%20233520.png)
+![RAG 2](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag2%20Screenshot%202026-06-12%20233520.png)
+![RAG 3](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag%203%20Screenshot%202026-06-12%20233520.png)
+![RAG 4](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag%204%20Screenshot%202026-06-12%20234728.png)
+![RAG 5](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag%205%20Screenshot%202026-06-12%20233520.png)
+
+---
+
+## 🚀 Overview
+
+A **Retrieval-Augmented Generation (RAG)** based ML Research Assistant that enables semantic search and question answering over **arXiv scientific papers** using **Weaviate vector database**, **LLMs**, and advanced NLP pipelines.
+
+---
+
+## ✨ Key Features
+
+### 📄 Data Processing
+- ArXiv dataset ingestion
+- Multiple chunking strategies (fixed, sentence, semantic)
+- Clean preprocessing pipeline
+
+### 🔍 Retrieval System
+- Weaviate vector database (cloud-ready)
+- Sentence-transformer embeddings
+- Semantic similarity search
+
+### 🤖 RAG Pipeline
+- End-to-end retrieval + generation system
+- Cross-encoder reranking (improves relevance)
+- LLM support (OpenAI / Groq)
+
+### 📊 Evaluation
+- Retrieval quality metrics
+- RAG performance evaluation
+- Reranking effectiveness analysis
+
+### 🖥️ UI
+- Streamlit interactive interface
+- Real-time semantic search
+- RAG result visualization
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+
+    DATA[ArXiv Dataset] --> CHUNK[Chunking Engine]
+    CHUNK --> EMB[Embedding Model]
+    EMB --> VDB[(Weaviate Vector DB)]
+
+    USER[User Query] --> QEMB[Query Embedding]
+    QEMB --> RET[Vector Retrieval]
+    RET --> VDB
+
+    RET --> RERANK[Cross Encoder Reranker]
+    RERANK --> PROMPT[Prompt Builder]
+
+    PROMPT --> LLM[LLM - OpenAI / Groq]
+    LLM --> RESPONSE[Final Answer]
+
+    RESPONSE --> UI[Streamlit UI]
+```
+
+🧱 Project Structure
+```
+ml-research-assistant/
+├── app/
+│   ├── config.py
+│   ├── data/
+│   │   └── load_arxiv.py
+│   ├── ingestion/
+│   │   ├── chunking.py
+│   │   ├── embeddings.py
+│   │   └── index_weaviate.py
+│   ├── rag/
+│   │   ├── pipeline.py
+│   │   ├── retriever.py
+│   │   ├── reranker.py
+│   │   ├── evaluation.py
+│   │   └── llm_client.py
+│   └── ui/
+│       └── streamlit_app.py
+│
+├── scripts/
+│   └── build_index.py
+│
+├── deploy/
+│   ├── setup_ec2.sh
+│   ├── start_app.sh
+│   └── copy_to_ec2.ps1
+│
+├── requirements.txt
+├── pyproject.toml
+└── README.md
+```
+
+## ⚙️ Installation Guide
+
+### 1️⃣ Clone Repository
+
+git clone https://github.com/TowhidAhmedd/Advanced_Rag_ML_Research_Assistant
+cd ml-research-assistant
+
+### 2️⃣ Setup Virtual Environment
+python -m venv venv
+
+# Activate environment
+# Windows
+venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+### 3️⃣ Configure Environment Variables
+
+Create a .env file in the project root:
+
+WEAVIATE_URL=your-weaviate-url
+
+WEAVIATE_API_KEY=your-weaviate-api-key
+
+OPENAI_API_KEY=your-openai-api-key
+
+GROQ_API_KEY=your-groq-api-key
+
+### ▶️ Running the Project
+Step 1: Build Vector Index
+
+python scripts/build_index.py
+
+Step 2: Launch Streamlit UI
+
+streamlit run app/ui/streamlit_app.py
+
+
+### ☁️ Deployment (Render)
+
+#### Setup Steps
+
+Create a New Web Service on Render
+
+Select Python 3 Runtime
+
+Configure build command:
+
+pip install -r requirements.txt
+
+Configure start command:
+
+streamlit run app/ui/streamlit_app.py --server.port $PORT --server.address 0.0.0.0
+
+
+## 🧠 System Architecture Flow
+● Load the ArXiv dataset
+
+● Chunk documents into smaller segments
+
+● Generate embeddings for each document chunk
+
+● Store embeddings in the Weaviate vector database
+
+● Embed the user's query
+
+● Perform semantic vector search to retrieve relevant document chunks
+
+● Apply cross-encoder reranking to improve retrieval relevance
+
+● Generate a grounded response using an LLM
+
+● Display the final response through the Streamlit UI
+
+
+## 📊 Tech Stack
+● Python 3.10+
+
+● Streamlit
+
+● NumPy
+
+● Pandas
+
+● Weaviate Vector Database
+
+● Sentence Transformers
+
+● OpenAI API / Groq API
+
+● Cross-Encoder Reranking Models
+
+
+# 📌 Future Improvements
+
+● Implement hybrid search (BM25 + vector search)
+
+● Integrate LangChain or LangGraph for orchestration
+
+● Build a multi-agent RAG workflow
+
+● Add PDF upload and parsing support
+
+● Develop an evaluation dashboard (Precision, Recall, Faithfulness)
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 👨‍💻 Author
+
+**Towhid Ahmed**
+
+[![GitHub](https://img.shields.io/badge/GitHub-TowhidAhmedd-181717?style=flat-square&logo=github)](https://github.com/TowhidAhmedd/Advanced_Rag_ML_Research_Assistant)
+
+
+<!--
+# =====================================
 # Project Demo
 
 ![RAG 1](https://raw.githubusercontent.com/TowhidAhmedd/document-images-others/main/images/ml_adv_rag%20Screenshot%202026-06-12%20233520.png)
@@ -209,6 +430,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Weaviate](https://weaviate.io/) for vector database
 - [Hugging Face](https://huggingface.co/) for datasets and models
 - [OpenAI](https://openai.com/) and [Groq](https://groq.com/) for LLM APIs
+
+-->
 
 
 
