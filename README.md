@@ -89,11 +89,6 @@ ml-research-assistant/
 ├── scripts/
 │   └── build_index.py
 │
-├── deploy/
-│   ├── setup_ec2.sh
-│   ├── start_app.sh
-│   └── copy_to_ec2.ps1
-│
 ├── requirements.txt
 ├── pyproject.toml
 └── README.md
