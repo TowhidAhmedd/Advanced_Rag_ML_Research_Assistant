@@ -61,8 +61,8 @@ def load_arxiv_papers() -> List[Dict]:
         ds_conf.hf_config,
         split="train",
         trust_remote_code=True,          # required by scientific_papers
-        cache_dir=str(cache_dir),        # 👈 force cache onto F: here
-        streaming=True,                   # 👈 stream data instead of downloading full dataset
+        cache_dir=str(cache_dir),        #  force cache onto F: here
+        streaming=True,                   #  stream data instead of downloading full dataset
     )
 
     max_papers = ds_conf.max_papers
