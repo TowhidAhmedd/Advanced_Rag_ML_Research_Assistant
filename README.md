@@ -46,6 +46,7 @@ A **Retrieval-Augmented Generation (RAG)** based ML Research Assistant that enab
 ## 🏗️ System Architecture
 
 ```mermaid
+
 flowchart TD
 
     DATA[ArXiv Dataset] --> CHUNK[Chunking Engine]
